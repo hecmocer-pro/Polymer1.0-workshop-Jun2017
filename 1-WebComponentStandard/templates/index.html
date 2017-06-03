@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+    <h1>TEMPLATES</h1>
+
+    <button id="btn">Incrustar template</button>
+
+    <div id="placeItHere">
+    </div>
+
+    <template id="template">
+      <style>
+        body{
+          background-color: #CCCCCC;
+        }
+      </style>
+      <p>Este párrafo forma parte del contenido de la template</p>
+      <script>
+        (function(){
+          console.log('Template active!');
+        })();
+      </script>
+    </template>
+
+    <script>
+      (function() {
+
+        var template = document.querySelector('#template');
+        var location = document.querySelector('#placeItHere');
+        var clone = document.importNode(template.content, true);
+
+        btn.addEventListener('click', function(){
+          // Con la siguiente linea creamos una nueva copia de la template que incrustar
+          // var clone = document.importNode(template.content, true);
+          location.appendChild(clone);
+        });
+
+      })();
+    </script>
+  </body>
+</html>
