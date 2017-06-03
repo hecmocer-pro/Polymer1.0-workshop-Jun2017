@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <h1>SHADOW DOM</h1>
+    <p>Este párrafo en el documento principal no se verá afectado por los estilos encapsulados en el contenido del shadow dom</p>
+
+    <div id="hostElement"></div>
+
+    <script>
+      (function() {
+        let root = document.getElementById('hostElement');
+        let shadowRoot = root.attachShadow({mode: 'open'});
+        shadowRoot.innerHTML = '<style>p{color: red;}</style> <p>Este párrafo está alojado en el ShadowDom</p>';
+      })();
+    </script>
+  </body>
+</html>
