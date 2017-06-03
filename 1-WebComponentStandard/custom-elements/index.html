@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+
+    <h1>CUSTOM ELEMENTS</h1>
+    <babel-clock></babel-clock>
+
+    <script>
+      (function(){
+        class babelClock extends HTMLElement {
+
+          constructor() {
+            super();
+
+            var p = document.createElement('p');
+            this.appendChild(p);
+            updateTime();
+
+            function updateTime(){
+              var today = new Date();
+              var h = today.getHours();
+              var m = today.getMinutes();
+              var s = today.getSeconds();
+
+              p.innerHTML = h + ":" + m + ":" + s;
+              setTimeout(updateTime, 200);
+            }
+          }
+        }
+        window.customElements.define('babel-clock', babelClock);
+      })();
+    </script>
+  </body>
+</html>
