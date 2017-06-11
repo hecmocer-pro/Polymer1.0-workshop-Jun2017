@@ -1,0 +1,26 @@
+<script>
+  window.CustomBehaviors = window.CustomBehaviors || {};
+
+  window.CustomBehaviors.babelToggleBehavior = {
+
+    properties: {
+      isToggled: {
+        type: Boolean,
+        reflectToAttribute: true,
+        observer: '_isToggledObserver'
+      },
+      toggles: {
+        type: Number,
+        value: 0
+      }
+    },
+
+    toggle: function(){
+      this.set('isToggled', !this.isToggled);
+    },
+
+    _isToggledObserver: function(newVal){
+      this.set('toggles', newVal ? this.toggles + 1 : this.toggles - 1);
+    }
+  }
+</script>

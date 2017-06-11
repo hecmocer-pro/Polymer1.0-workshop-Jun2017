@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../babel-toggle-behavior/index.html">
 
 <!--
 `babel-like-badge`
@@ -14,11 +15,11 @@ A component to display a liked status
   <template>
 
     <style>
-      :host([is-liked]) .heart {
+      :host([is-toggled]) .heart {
         color: red;
       }
 
-      :host:not([is-liked]) .heart {
+      :host:not([is-toggled]) .heart {
         color: black;
       }
 
@@ -44,7 +45,7 @@ A component to display a liked status
     <div class="container">
       <div class="summary">[[summary]]</div>
       <iron-icon class="heart" icon="icons:favorite" on-click="_onHeartClick"></iron-icon>
-      <span>[[likes]]</span>
+      <span>[[toggles]]</span>
     </div>
 
 
@@ -55,32 +56,17 @@ A component to display a liked status
 
       is: 'babel-like-badge',
 
+      behaviors: [window.CustomBehaviors.babelToggleBehavior],
+
       properties: {
-        isLiked: {
-          type: Boolean,
-          reflectToAttribute: true,
-          observer: '_isLikedObserver'
-        },
-        likes: {
-          type: Number,
-          value: 0
-        },
         summary: {
           type: String,
-          computed: '_computeSummary(likes)'
+          computed: '_computeSummary(toggles)'
         }
       },
 
       _onHeartClick: function(){
-        this.set('isLiked', !this.isLiked);
-      },
-
-      _isLikedObserver: function(newVal, oldVal){
-        if (newVal) {
-          this.set('likes', this.likes + 1);
-        } else {
-          this.set('likes', this.likes - 1);
-        }
+        this.toggle();
       },
 
       _computeSummary: function(likes){
