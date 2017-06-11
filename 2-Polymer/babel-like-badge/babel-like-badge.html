@@ -1,4 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
 
 <!--
 `babel-like-badge`
@@ -10,13 +12,87 @@ A component to display a liked status
 
 <dom-module id="babel-like-badge">
   <template>
+
+    <style>
+      :host([is-liked]) .heart {
+        color: red;
+      }
+
+      :host:not([is-liked]) .heart {
+        color: black;
+      }
+
+      .summary {
+        margin-bottom: 10px;
+      }
+
+      .heart {
+        width: 24px;
+        height: 24px;
+        margin-bottom: 8px;
+        transition: height 200ms, width 200ms, margin-bottom 200ms;
+      }
+
+      .heart:hover {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 0;
+      }
+
+    </style>
+
+    <div class="container">
+      <div class="summary">[[summary]]</div>
+      <iron-icon class="heart" icon="icons:favorite" on-click="_onHeartClick"></iron-icon>
+      <span>[[likes]]</span>
+    </div>
+
+
   </template>
 
   <script>
     Polymer({
 
-      is: 'babel-like-badge'
+      is: 'babel-like-badge',
 
+      properties: {
+        isLiked: {
+          type: Boolean,
+          reflectToAttribute: true,
+          observer: '_isLikedObserver'
+        },
+        likes: {
+          type: Number,
+          value: 0
+        },
+        summary: {
+          type: String,
+          computed: '_computeSummary(likes)'
+        }
+      },
+
+      _onHeartClick: function(){
+        this.set('isLiked', !this.isLiked);
+      },
+
+      _isLikedObserver: function(newVal, oldVal){
+        if (newVal) {
+          this.set('likes', this.likes + 1);
+        } else {
+          this.set('likes', this.likes - 1);
+        }
+      },
+
+      _computeSummary: function(likes){
+        let summary = '';
+        if (likes) {
+          let plural = likes > 1 ? 's': '';
+          summary = `A ${likes} persona${plural} le${plural} gustó este artículo`;
+        } else {
+          summary = `Ninguna persona ha indicado que le guste todavía`;
+        }
+        return summary;
+      }
     });
   </script>
 </dom-module>
