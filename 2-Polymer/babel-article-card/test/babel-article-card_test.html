@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>babel-article-card test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../babel-article-card.html">
+  </head>
+  <body>
+    <test-fixture id="basic">
+      <template>
+        <babel-article-card></babel-article-card>
+      </template>
+    </test-fixture>
+
+    <script>
+      suite('babel-article-card', function() {
+        test('instantiating the element works', function() {
+          var element = fixture('basic');
+          assert.equal(element.is, 'babel-article-card');
+        });
+      });
+    </script>
+  </body>
+</html>
