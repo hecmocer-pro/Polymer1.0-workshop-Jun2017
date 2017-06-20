@@ -13,9 +13,13 @@
       :host{
         display: block;
         border-radius: 10px;
-        border: black 1px solid;
+        border: black solid var(--bac-border-thickness, 1px);
         padding: 50px;
         margin: 1% 10%;
+      }
+
+      .footer{
+        @apply(--bac-footer-mixin);
       }
 
       ::content h1{

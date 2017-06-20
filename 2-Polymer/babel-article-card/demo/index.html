@@ -24,12 +24,17 @@
     </style>
   </head>
   <body>
-    <style>
+    <style is="custom-style">
       body{
         background-color: #ddd;
       }
       babel-article-card{
         background-color: #fff;
+        --bac-border-thickness: 2px;
+        --bac-border-thickness-hover: 3px;
+        --bac-footer-mixin: {
+          float: right;
+        }
         /* FUNCIONA PORQUE ESTILAMOS UNA ETIQUETA */
       }
       babel-article-card .footer{
