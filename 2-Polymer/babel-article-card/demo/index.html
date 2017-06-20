@@ -6,16 +6,55 @@
 
     <title>babel-article-card demo</title>
 
+    <script>
+      (function(){
+        window.Polymer = {
+          dom: 'shadow'
+        };
+      })();
+    </script>
+
     <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
 
+    <link rel="import" href="../babel-article-card.html">
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
-    <link rel="import" href="../babel-article-card.html">
 
     <style is="custom-style" include="demo-pages-shared-styles">
     </style>
   </head>
   <body>
-    <babel-article-card></babel-article-card>
+    <style>
+      body{
+        background-color: #ddd;
+      }
+      babel-article-card{
+        background-color: #fff;
+        /* FUNCIONA PORQUE ESTILAMOS UNA ETIQUETA */
+      }
+      babel-article-card h1{
+        text-decoration: underline;
+        /* FUNCIONA PORQUE ESTILAMOS LIGHT DOM */
+      }
+      babel-article-card .footer{
+        background-color: #ccc;
+        /* NO FUNCIONA EN DOM=SHADOW */
+      }
+    </style>
+
+    <babel-article-card>
+      <h1>iPhone7</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </babel-article-card>
+
+    <babel-article-card>
+      <h1>Samsung S8</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </babel-article-card>
+
+    <babel-article-card>
+      <h1>Google Pixel</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </babel-article-card>
   </body>
 </html>
