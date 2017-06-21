@@ -6,22 +6,12 @@
 <dom-module id="babel-app-shell">
   <template>
 
-    <template is="dom-if" if="[[blogPosts.0.isLiked]]">
-      <babel-article-card likes="[[blogPosts.0.likes]]" is-liked="[[blogPosts.0.isLiked]]">
-        <h1>iPhone 7</h1>
+    <template is="dom-repeat" items="[[blogPosts]]">
+      <babel-article-card likes="[[item.likes]]" is-liked="[[item.isLiked]]">
+        <h1>[[item.articleHeading]]</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </babel-article-card>
     </template>
-
-    <babel-article-card likes="[[blogPosts.1.likes]]" is-liked="[[blogPosts.1.isLiked]]">
-      <h1>Samsung S8</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </babel-article-card>
-
-    <babel-article-card likes="[[blogPosts.2.likes]]" is-liked="[[blogPosts.2.isLiked]]">
-      <h1>Google Pixel</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-    </babel-article-card>
 
   </template>
 
@@ -39,7 +29,7 @@
       ready: function(){
         this.set('blogPosts', [
           {
-            "articleHeading": "Apple iphone7",
+            "articleHeading": "Apple iPhone7",
             "likes": 22,
             "isLiked": false
           },
