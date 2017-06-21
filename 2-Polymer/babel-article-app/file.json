@@ -1,0 +1,17 @@
+[
+  {
+    "articleHeading": "Apple iPhone7",
+    "likes": 22,
+    "isLiked": false
+  },
+  {
+    "articleHeading": "Samsung s8",
+    "likes": 104,
+    "isLiked": true
+  },
+  {
+    "articleHeading": "Google pixel",
+    "likes": 2,
+    "isLiked": false
+  }
+]

@@ -1,10 +1,18 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/babel-like-badge/babel-like-badge.html">
 <link rel="import" href="../../bower_components/babel-toggle-behavior/index.html">
 <link rel="import" href="../../bower_components/babel-article-card/babel-article-card.html">
 
 <dom-module id="babel-app-shell">
   <template>
+
+    <iron-ajax
+    auto
+    url="../../file.json"
+    handle-as="json"
+    on-response="ajaxResponse"
+    debounce-duration="300"></iron-ajax>
 
     <template is="dom-repeat" items="[[blogPosts]]">
       <babel-article-card likes="[[item.likes]]" is-liked="[[item.isLiked]]">
@@ -26,24 +34,8 @@
         }
       },
 
-      ready: function(){
-        this.set('blogPosts', [
-          {
-            "articleHeading": "Apple iPhone7",
-            "likes": 22,
-            "isLiked": false
-          },
-          {
-            "articleHeading": "Samsung s8",
-            "likes": 104,
-            "isLiked": true
-          },
-          {
-            "articleHeading": "Google pixel",
-            "likes": 2,
-            "isLiked": false
-          }
-        ]);
+      ajaxResponse: function(e) {
+        this.set('blogPosts', e.detail.response);
       }
 
     });
