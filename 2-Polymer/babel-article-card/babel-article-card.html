@@ -31,7 +31,7 @@
       <content></content>
     </div>
     <div class="footer">
-      <babel-like-badge></babel-like-badge>
+      <babel-like-badge toggles="{{likes}}" is-toggled="{{isLiked}}"></babel-like-badge>
     </div>
 
   </template>
@@ -39,7 +39,12 @@
   <script>
     Polymer({
 
-      is: 'babel-article-card'
+      is: 'babel-article-card',
+
+      properties: {
+        likes: Number,
+        isLiked: Boolean
+      }
 
     });
   </script>
