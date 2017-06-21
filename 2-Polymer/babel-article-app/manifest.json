@@ -1,0 +1,6 @@
+{
+  "name": "babel-article-app",
+  "short_name": "babel-article-app",
+  "start_url": "/",
+  "display": "standalone"
+}
