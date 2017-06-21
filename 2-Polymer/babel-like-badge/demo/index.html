@@ -31,5 +31,13 @@
         </template>
       </demo-snippet>
     </div>
+
+    <script>
+      (function(){
+        window.addEventListener('babel-like', (e) => {
+          console.log(e.detail);
+        })
+      })();
+    </script>
   </body>
 </html>

@@ -67,6 +67,7 @@ A component to display a liked status
 
       _onHeartClick: function(){
         this.toggle();
+        this.fire('babel-like', {likes: this.toggles});
       },
 
       _computeSummary: function(likes){
