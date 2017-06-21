@@ -2,7 +2,9 @@
   "name": "babel-article-app",
   "main": "index.html",
   "dependencies": {
-    "polymer": "Polymer/polymer#^1.9.0"
+    "polymer": "Polymer/polymer#^1.9.0",
+    "app-route": "PolymerElements/app-route#^0.9.3",
+    "iron-pages": "PolymerElements/iron-pages#^1.0.8",
     "iron-ajax": "^1.4.3"
   },
   "devDependencies": {

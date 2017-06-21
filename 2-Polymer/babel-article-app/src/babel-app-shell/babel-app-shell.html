@@ -1,5 +1,8 @@
 <link rel="import" href="../../bower_components/polymer/polymer.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../../bower_components/babel-like-badge/babel-like-badge.html">
 <link rel="import" href="../../bower_components/babel-toggle-behavior/index.html">
 <link rel="import" href="../../bower_components/babel-article-card/babel-article-card.html">
@@ -14,12 +17,41 @@
     on-response="ajaxResponse"
     debounce-duration="300"></iron-ajax>
 
-    <template is="dom-repeat" items="[[blogPosts]]">
-      <babel-article-card likes="[[item.likes]]" is-liked="[[item.isLiked]]">
-        <h1>[[item.articleHeading]]</h1>
+    <app-location route="{{route}}"></app-location>
+
+    <app-route
+      route="{{route}}"
+      pattern="/articles/:view"
+      data="{{articleRouteData}}"
+      tail="{{articleSubroute}}"></app-route>
+
+    <iron-pages selected="[[articleRouteData.view]]" attr-for-selected="article">
+      <div article="" route="{{subroute}}">
+        <template is="dom-repeat" items="[[blogPosts]]">
+          <babel-article-card likes="[[item.likes]]" is-liked="[[item.isLiked]]">
+            <h1>[[item.articleHeading]]</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          </babel-article-card>
+        </template>
+      </div>
+    </iron-pages>
+
+    <iron-pages selected="[[articleRouteData.view]]" attr-for-selected="article">
+      <babel-article-card article="1" route="{{articleSubroute}}" likes="[[blogPosts.0.likes]]" is-liked="[[blogPosts.0.isLiked]]">
+        <h1>[[blogPosts.0.articleHeading]]</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </babel-article-card>
-    </template>
+
+      <babel-article-card article="2" route="{{articleSubroute}}" likes="[[blogPosts.1.likes]]" is-liked="[[blogPosts.1.isLiked]]">
+        <h1>[[blogPosts.1.articleHeading]]</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </babel-article-card>
+
+      <babel-article-card article="3" route="{{articleSubroute}}" likes="[[blogPosts.2.likes]]" is-liked="[[blogPosts.2.isLiked]]">
+        <h1>[[blogPosts.2.articleHeading]]</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </babel-article-card>
+    </iron-pages>
 
   </template>
 
