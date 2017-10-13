@@ -28,7 +28,7 @@
       }
     </style>
     <div class="container">
-      <content></content>
+      <slot></slot>
     </div>
     <div class="footer">
       <babel-like-badge toggles="{{likes}}" is-toggled="{{isLiked}}"></babel-like-badge>
@@ -37,15 +37,21 @@
   </template>
 
   <script>
-    Polymer({
+    (function() {
+      class BabelArticleCard extends Polymer.Element {
+        static get is() {
+          return 'babel-article-card'
+        }
 
-      is: 'babel-article-card',
-
-      properties: {
-        likes: Number,
-        isLiked: Boolean
+        static get properties() {
+          return {
+            likes: Number,
+            isLiked: Boolean
+          }
+        }
       }
 
-    });
+      customElements.define(BabelArticleCard.is, BabelArticleCard);
+    })();
   </script>
 </dom-module>
