@@ -52,34 +52,40 @@ A component to display a liked status
   </template>
 
   <script>
-    Polymer({
+    (function() {
 
-      is: 'babel-like-badge',
-
-      behaviors: [window.CustomBehaviors.babelToggleBehavior],
-
-      properties: {
-        summary: {
-          type: String,
-          computed: '_computeSummary(toggles)'
+      class BabelLikeBadge extends BabelToggleBehavior(Polymer.Element) {
+        static get is() {
+          return `babel-like-badge`;
         }
-      },
 
-      _onHeartClick: function(){
-        this.toggle();
-        this.fire('babel-like', {likes: this.toggles});
-      },
-
-      _computeSummary: function(likes){
-        let summary = '';
-        if (likes) {
-          let plural = likes > 1 ? 's': '';
-          summary = `A ${likes} persona${plural} le${plural} gustó este artículo`;
-        } else {
-          summary = `Ninguna persona ha indicado que le guste todavía`;
+        static get properties() {
+          return {
+            summary: {
+              type: String,
+              computed: '_computeSummary(toggles)'
+            }
+          }
         }
-        return summary;
+
+        _onHeartClick() {
+          this.toggle();
+          this.dispatchEvent(new CustomEvent('babel-like', {bubbles: true, detail: {likes: this.toggles}}));
+        }
+
+        _computeSummary(likes) {
+          let summary = '';
+          if (likes) {
+            let plural = likes > 1 ? 's': '';
+            summary = `A ${likes} persona${plural} le${plural} gustó este artículo`;
+          } else {
+            summary = `Ninguna persona ha indicado que le guste todavía`;
+          }
+          return summary;
+        }
       }
-    });
+
+      customElements.define(BabelLikeBadge.is, BabelLikeBadge);
+    }());
   </script>
 </dom-module>
