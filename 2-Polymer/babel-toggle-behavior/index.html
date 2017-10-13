@@ -1,26 +1,36 @@
 <script>
-  window.CustomBehaviors = window.CustomBehaviors || {};
+(function() {
 
-  window.CustomBehaviors.babelToggleBehavior = {
+  BabelToggleBehavior = function(superClass) {
 
-    properties: {
-      isToggled: {
-        type: Boolean,
-        reflectToAttribute: true,
-        observer: '_isToggledObserver'
-      },
-      toggles: {
-        type: Number,
-        value: 0
+    return class extends superClass {
+
+      constructor() {
+        super();
       }
-    },
 
-    toggle: function(){
-      this.set('isToggled', !this.isToggled);
-    },
+      static get properties() {
+        return {
+          isToggled: {
+            type: Boolean,
+            reflectToAttribute: true,
+            observer: '_isToggledObserver'
+          },
+          toggles: {
+            type: Number,
+            value: 0
+          }
+        }
+      }
 
-    _isToggledObserver: function(newVal){
-      this.set('toggles', newVal ? this.toggles + 1 : this.toggles - 1);
+      toggle() {
+        this.set('isToggled', !this.isToggled);
+      }
+
+      _isToggledObserver(newVal) {
+        this.set('toggles', newVal ? this.toggles + 1 : this.toggles - 1);
+      }
     }
   }
+}());
 </script>
