@@ -56,20 +56,26 @@
   </template>
 
   <script>
-    Polymer({
+    (function() {
 
-      is: 'babel-app-shell',
+      class BabelAppShell extends Polymer.Element{
+      static get is() {
+        return 'babel-app-shell'
+      }
 
-      properties: {
+      static get properties() {
         blogPosts: {
           type: Array
         }
-      },
-
-      ajaxResponse: function(e) {
-        this.set('blogPosts', e.detail.response);
       }
 
-    });
+      ajaxResponse(e) {
+        this.set('blogPosts', e.detail.response);
+      }
+    }
+
+    customElements.define(BabelAppShell.is, BabelAppShell);
+
+    })();
   </script>
 </dom-module>
