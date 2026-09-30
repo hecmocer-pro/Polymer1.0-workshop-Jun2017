@@ -1,6 +1,6 @@
 # polymer-Workshop
 
-[2017] Hands-on workshop examples for Web Components and Polymer 1.0.
+[2017-2017] Hands-on workshop examples for Web Components and Polymer 1.0.
 
 Repositorio con el código a desarrollar a lo largo del seminario hands-on sobre WebComponents & Polymer
 
